@@ -1,0 +1,69 @@
+.profile-details-card {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  border-radius: 1.25em;
+  border-top-left-radius: 2.5em;
+  border-top-right-radius: 2.5em;
+  padding: 2.5em 1.75em;
+  margin-bottom: 2em;
+  background-image: url('https://res.cloudinary.com/dkoqbt4pc/image/upload/v1733839338/Jobby%20App/geometric-background.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+@media screen and (min-width: 768px) {
+  .profile-details-card {
+    max-height: 175px;
+  }
+}
+
+.profile-identity {
+  margin: 0;
+}
+
+.profile-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.profile-caption {
+}
+
+.profile-name {
+  margin-top: 0.5em;
+  color: #6163ee;
+  font-size: 1.7rem;
+  font-weight: 500;
+}
+
+.profile-job-title {
+  margin-top: 1.5em;
+  color: #7f6379;
+  font-size: 1.3rem;
+}
+
+.profile-error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 169px;
+}
+
+@media screen and (min-width: 578px) {
+  .profile-error {
+    height: 140px;
+    margin-top: 2.25em;
+  }
+}
+
+.profile-retry-btn {
+  border: none;
+  border-radius: 0.5em;
+  padding: 0.7em 1.75em;
+  background: #4842dd;
+  font-size: 1.4rem;
+  font-weight: 500;
+  cursor: pointer;
+}

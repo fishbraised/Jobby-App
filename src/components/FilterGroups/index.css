@@ -1,0 +1,46 @@
+.filter-groups-section {
+}
+
+.filter-groups-divider {
+  border: 1px solid #64748a;
+  margin-top: 2.25em;
+  margin-bottom: 2.5em;
+}
+
+.filter-category-title {
+  margin-bottom: 1.25em;
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.filter-options {
+  padding: 0;
+  list-style-type: none;
+}
+
+.filter-options li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.filter-options li p {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.filter-options li input {
+  width: 15px;
+  height: 15px;
+  margin-right: 0.85em;
+  cursor: pointer;
+}
+
+.employment-type-options {
+}
+
+.salary-range-options li input {
+  margin-bottom: 4px;
+
+  border: 2px solid white;
+}

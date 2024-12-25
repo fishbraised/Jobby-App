@@ -1,0 +1,87 @@
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #121212;
+}
+
+.login-main-content {
+  width: 80%;
+  border-radius: 1em;
+  padding: 3em 5em;
+  background: #272727;
+}
+
+@media screen and (min-width: 576px) {
+  .login-main-content {
+    width: 60%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .login-main-content {
+    width: 40%;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .login-main-content {
+    width: 35%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .login-main-content {
+    width: 30%;
+  }
+}
+
+.login-header {
+  text-align: center;
+}
+
+.login-logo {
+  width: 100px;
+  margin-bottom: 2em;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form label {
+  margin-bottom: 0.75em;
+  font-size: 1.3rem;
+}
+
+.login-form input {
+  border: 1px solid #475568;
+  border-radius: 0.25em;
+  outline: none;
+  padding: 0.75em;
+  margin-bottom: 1.5em;
+  color: #a1cfc9;
+  caret-color: #a1cfc9;
+  background: none;
+  font-size: 1.3rem;
+}
+
+.login-form button {
+  border: none;
+  border-radius: 0.5em;
+  padding: 0.7em;
+  margin-top: 0.8em;
+  background: #6163ee;
+  font-size: 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.login-error-msg {
+  display: none;
+  margin-top: 0.5em;
+  color: #d81727;
+  font-size: 1.4rem;
+}

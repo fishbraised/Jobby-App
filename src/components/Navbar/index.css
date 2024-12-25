@@ -1,0 +1,127 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.85em 1.75em;
+  background: #272727;
+}
+
+.navbar-logo {
+  width: 50px;
+}
+
+@media screen and (min-width: 768px) {
+  .navbar-logo {
+    width: 55px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .navbar-logo {
+    width: 60px;
+  }
+}
+
+.navbar-links-mobile {
+}
+
+@media screen and (min-width: 576px) {
+  .navbar-links-mobile {
+    display: none;
+  }
+}
+
+.navbar-icon {
+  margin-left: 1em;
+  font-size: 2.4rem;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .navbar-icon {
+    font-size: 2.5rem;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .navbar-icon {
+    font-size: 2.6rem;
+  }
+}
+
+.navbar-links-desktop {
+  display: none;
+  padding: 0;
+  gap: 0.75em;
+  list-style-type: none;
+}
+
+@media screen and (min-width: 576px) {
+  .navbar-links-desktop {
+    display: flex;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .navbar-links-desktop {
+    gap: 1.75em;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .navbar-links-desktop {
+    gap: 2.75em;
+  }
+}
+
+.navbar-link {
+  text-decoration: none;
+}
+
+.navbar-link-item {
+  display: flex;
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .navbar-link-item {
+    font-size: 1.8rem;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .navbar-link-item {
+    font-size: 2rem;
+  }
+}
+
+.logout-btn {
+  display: none;
+  border: none;
+  border-radius: 0.5em;
+  padding: 0.6em 1.25em;
+  color: #f8fbf6;
+  background: #6163ee;
+  font-size: 1.2rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 576px) {
+  .logout-btn {
+    display: inline;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .logout-btn {
+    font-size: 1.3rem;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .logout-btn {
+    font-size: 1.4rem;
+  }
+}
