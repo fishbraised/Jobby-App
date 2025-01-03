@@ -1,11 +1,11 @@
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import ProtectedRoute from './components/ProtectedRoute';
+import ProtectedRoute from "./components/ProtectedRoute";
 
-import HomePage from './components/HomePage';
-import LoginPage from './components/LoginPage';
-import JobsPage from './components/JobsPage';
-import './App.css';
+import HomePage from "./components/HomePage";
+import LoginPage from "./components/LoginPage";
+import JobsPage from "./components/JobsPage";
+import "./App.css";
 
 const App = () => (
   <BrowserRouter>

@@ -1,4 +1,4 @@
-.filter-groups-section {
+.filter-groups-form {
 }
 
 .filter-groups-divider {
@@ -24,7 +24,7 @@
   margin-bottom: 1em;
 }
 
-.filter-options li p {
+.filter-options li label {
   margin: 0;
   font-size: 1.4rem;
 }

@@ -23,6 +23,13 @@
 }
 
 .navbar-links-mobile {
+  display: flex;
+  padding: 0;
+  list-style-type: none;
+}
+
+.navbar-links-mobile li button {
+  all: unset;
 }
 
 @media screen and (min-width: 576px) {

@@ -1,10 +1,10 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-import Navbar from '../Navbar';
+import Navbar from "../Navbar";
 
-import './index.css';
+import "./index.css";
 
-const Home = () => {
+const HomePage = () => {
   return (
     <div className="home-page">
       <Navbar />
@@ -26,4 +26,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;

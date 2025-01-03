@@ -2,19 +2,20 @@
   display: flex;
   justify-content: flex-start;
   width: 100%;
+  height: 165px;
   border-radius: 1.25em;
   border-top-left-radius: 2.5em;
   border-top-right-radius: 2.5em;
   padding: 2.5em 1.75em;
   margin-bottom: 2em;
-  background-image: url('https://res.cloudinary.com/dkoqbt4pc/image/upload/v1733839338/Jobby%20App/geometric-background.jpg');
+  background-image: url("https://res.cloudinary.com/dkoqbt4pc/image/upload/v1733839338/Jobby%20App/geometric-background.jpg");
   background-size: cover;
   background-position: center;
 }
 
 @media screen and (min-width: 768px) {
   .profile-details-card {
-    max-height: 175px;
+    height: 175px;
   }
 }
 
@@ -66,4 +67,17 @@
   font-size: 1.4rem;
   font-weight: 500;
   cursor: pointer;
+}
+
+.profile-loader-con {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 165px;
+}
+
+@media screen and (min-width: 768px) {
+  .profile-loader-con {
+    height: 175px;
+  }
 }

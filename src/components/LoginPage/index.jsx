@@ -1,11 +1,11 @@
-import Cookies from 'js-cookie';
-import { Redirect } from 'react-router-dom';
+import Cookies from "js-cookie";
+import { Redirect } from "react-router-dom";
 
-import { Component } from 'react';
-import './index.css';
+import { Component } from "react";
+import "./index.css";
 
-class Login extends Component {
-  state = { username: '', password: '', errorMsg: '' };
+class LoginPage extends Component {
+  state = { username: "", password: "", errorMsg: "" };
 
   updateUsername = (event) => {
     this.setState({ username: event.target.value.toLowerCase() });
@@ -24,19 +24,19 @@ class Login extends Component {
       password,
     };
 
-    const url = 'https://apis.ccbp.in/login';
+    const url = "https://apis.ccbp.in/login";
 
     const options = {
-      method: 'POST',
+      method: "POST",
       body: JSON.stringify(userDetails),
     };
 
     const response = await fetch(url, options);
     const data = await response.json();
 
-    console.log('response: ', response);
+    console.log("response: ", response);
 
-    console.log('data: ', data);
+    console.log("data: ", data);
 
     if (response.ok) {
       this.onSubmitSuccess(data.jwt_token);
@@ -48,8 +48,8 @@ class Login extends Component {
   onSubmitSuccess = (jwtToken) => {
     const { history } = this.props;
 
-    Cookies.set('jwt_token', jwtToken, { expires: 7 });
-    history.replace('/');
+    Cookies.set("jwt_token", jwtToken, { expires: 7 });
+    history.replace("/");
   };
 
   onSubmitFailure = (errorMsg) => {
@@ -59,7 +59,7 @@ class Login extends Component {
   render() {
     const { username, password, errorMsg } = this.state;
 
-    const jwtToken = Cookies.get('jwt_token');
+    const jwtToken = Cookies.get("jwt_token");
 
     if (jwtToken) {
       return <Redirect to="/" />;
@@ -105,6 +105,6 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default LoginPage;
 
 // ! Glance at the E-commerce login and protectedRoute mechanism code.

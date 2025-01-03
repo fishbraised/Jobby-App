@@ -1,29 +1,76 @@
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 
-import Navbar from '../Navbar';
-import ProfileDetails from '../ProfileDetails';
-import FilterGroups from '../FilterGroups';
-import JobsCard from '../JobsCard';
+import Navbar from "../Navbar";
+import ProfileDetails from "../ProfileDetails";
+import FilterGroups from "../FilterGroups";
+import JobCard from "../JobCard";
 
-import { IoSearchOutline } from 'react-icons/io5';
-import { MdOutlineStarPurple500 } from 'react-icons/md';
-import { FaLocationDot } from 'react-icons/fa6';
-import { BsBriefcaseFill } from 'react-icons/bs';
+import { IoSearchOutline } from "react-icons/io5";
+import { Triangle } from "react-loader-spinner";
 
-import { Component } from 'react';
-import './index.css';
+import { Component } from "react";
+import "./index.css";
 
-class Jobs extends Component {
-  state = { jobsData: [] };
+const apiConstants = {
+  initial: "INITIAL",
+  success: "SUCCESS",
+  failure: "FAILURE",
+  inProgress: "IN_PROGRESS",
+};
+
+class JobsPage extends Component {
+  state = {
+    jobsData: [],
+    apiStatus: apiConstants.initial,
+    userEmploymentTypes: [],
+    userSalaryRange: "",
+    searchInput: "",
+  };
+
+  updateSearchInput = (event) => {
+    this.setState({ searchInput: event.target.value });
+  };
+
+  addEmploymentType = (id) => {
+    this.setState(
+      (prevState) => ({
+        userEmploymentTypes: [...prevState.userEmploymentTypes, id],
+      }),
+      this.getJobsData
+    );
+  };
+
+  removeEmploymentType = (id) => {
+    const { userEmploymentTypes } = this.state;
+
+    const filteredEmploymentTypes = userEmploymentTypes.filter(
+      (eachId) => eachId !== id
+    );
+
+    this.setState(
+      { userEmploymentTypes: filteredEmploymentTypes },
+      this.getJobsData
+    );
+  };
+
+  updateSalaryRange = (id) => {
+    this.setState({ userSalaryRange: id }, this.getJobsData);
+  };
 
   renderSuccessView = () => {
     const { jobsData } = this.state;
 
-    <ul>
-      {jobsData.map(() => (
-        <JobsCard />
-      ))}
-    </ul>;
+    return (
+      <>
+        <p className="jobs-total-count">Total Count: {jobsData.length}</p>
+
+        <ul className="jobs-result-list">
+          {jobsData.map((eachObj) => (
+            <JobCard key={eachObj.id} jobDetails={eachObj} />
+          ))}
+        </ul>
+      </>
+    );
   };
 
   renderNoDataView = () => (
@@ -55,14 +102,60 @@ class Jobs extends Component {
     </div>
   );
 
-  // Don't do failure part of both profile and other API
+  renderLoader = () => (
+    <div className="jobs-loader-con">
+      <Triangle
+        visible={true}
+        height="80"
+        width="80"
+        color="#4448db"
+        ariaLabel="triangle-loading"
+        wrapperStyle={{}}
+        wrapperClass=""
+      />
+    </div>
+  );
+
+  getJobsSuccess = (data) => {
+    const updatedData = data.map((eachObj) => ({
+      companyLogoUrl: eachObj.company_logo_url,
+      employmentType: eachObj.employment_type,
+      id: eachObj.id,
+      jobDescription: eachObj.job_description,
+      packagePerAnnum: eachObj.package_per_annum,
+      rating: eachObj.rating,
+      title: eachObj.title,
+    }));
+
+    this.setState({ jobsData: updatedData, apiStatus: apiConstants.success });
+  };
+
+  getJobsFailure = (errorMsg) => {
+    this.setState({ apiStatus: apiConstants.failure });
+  };
+
+  renderSwitch = () => {
+    const { apiStatus } = this.state;
+
+    switch (apiStatus) {
+      case apiConstants.success:
+        return this.renderSuccessView();
+
+      case apiConstants.failure:
+        return this.renderFailureView();
+
+      case apiConstants.inProgress:
+        return this.renderLoader();
+    }
+  };
 
   getJobsData = async () => {
-    const JwtToken = Cookies.get('jwt_token');
-
-    const url = `https://apis.ccbp.in/jobs?employment_type=&minimum_package=&search=`;
+    this.setState({ apiStatus: apiConstants.inProgress });
+    const JwtToken = Cookies.get("jwt_token");
+    const { userEmploymentTypes, userSalaryRange, searchInput } = this.state;
+    const url = `https://apis.ccbp.in/jobs?employment_type=${userEmploymentTypes}&minimum_package=${userSalaryRange}&search=${searchInput}`;
     const options = {
-      method: 'GET',
+      method: "GET",
       headers: {
         Authorization: `Bearer ${JwtToken}`,
       },
@@ -77,56 +170,62 @@ class Jobs extends Component {
     }
   };
 
-  getJobsSuccess = (data) => {
-    const updatedData = data.map((eachObj) => ({
-      companyLogoUrl: eachObj.company_logo_url,
-      employmentType: eachObj.employment_type,
-      id: eachObj.id,
-      jobDescription: eachObj.job_description,
-      packagePerAnnum: eachObj.package_per_annum,
-      rating: eachObj.rating,
-      title: eachObj.title,
-    }));
-
-    this.setState({ jobsData: updatedData });
-  };
-
-  getJobsFailure = () => {};
-
   componentDidMount() {
     this.getJobsData();
   }
 
   render() {
+    const { searchInput } = this.state;
+
     return (
       <div className="jobs-page">
         <Navbar />
 
         <main className="jobs-main-content">
-          <div className="jobs-search-box-sm jobs-search-box">
-            <input type="text" placeholder="Search for jobs..." />
+          <form
+            className="jobs-search-box-sm jobs-search-box"
+            onSubmit={this.getJobsData}
+          >
+            <input
+              onChange={this.updateSearchInput}
+              value={searchInput}
+              type="text"
+              placeholder="Search for jobs..."
+            />
 
-            <button className="search-btn">
+            <button className="search-btn" type="submit">
               <IoSearchOutline className="search-icon" />
             </button>
-          </div>
+          </form>
 
           <div className="jobs-left-section">
             <ProfileDetails />
 
-            <FilterGroups />
+            <FilterGroups
+              addEmploymentType={this.addEmploymentType}
+              removeEmploymentType={this.removeEmploymentType}
+              updateSalaryRange={this.updateSalaryRange}
+            />
           </div>
 
           <div className="jobs-right-section">
-            <div className="jobs-search-box-lg jobs-search-box">
-              <input type="text" placeholder="Search for jobs..." />
+            <form
+              className="jobs-search-box-lg jobs-search-box"
+              onSubmit={this.getJobsData}
+            >
+              <input
+                onChange={this.updateSearchInput}
+                value={searchInput}
+                type="text"
+                placeholder="Search for jobs..."
+              />
 
-              <button className="search-btn">
+              <button className="search-btn" type="submit">
                 <IoSearchOutline className="search-icon" />
               </button>
-            </div>
+            </form>
 
-            {this.renderSuccessView()}
+            {this.renderSwitch()}
           </div>
         </main>
       </div>
@@ -134,4 +233,4 @@ class Jobs extends Component {
   }
 }
 
-export default Jobs;
+export default JobsPage;

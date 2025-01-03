@@ -1,21 +1,35 @@
-import './index.css';
+import "./index.css";
 
-const JobCard = () => {
+import { MdOutlineStarPurple500 } from "react-icons/md";
+import { FaLocationDot } from "react-icons/fa6";
+import { BsBriefcaseFill } from "react-icons/bs";
+
+const JobCard = (props) => {
+  const { jobDetails } = props;
+  const {
+    companyLogoUrl,
+    employmentType,
+    jobDescription,
+    packagePerAnnum,
+    rating,
+    title,
+  } = jobDetails;
+
   return (
     <div className="job-listing-card">
       <div className="job-listing-header">
         <img
           className="job-listing-image"
-          src="https://www.solidbackgrounds.com/images/1920x1080/1920x1080-dark-orange-solid-color-background.jpg"
+          src={companyLogoUrl}
           alt="job-listing-image"
         />
 
         <div className="job-listing-title-section">
-          <h2 className="job-listing-title">Devops Engineer</h2>
+          <h2 className="job-listing-title">{title}</h2>
 
           <div className="job-listing-rating">
             <MdOutlineStarPurple500 className="rating-icon" color="fdbb4d" />
-            <p className="rating-score">4</p>
+            <p className="rating-score">{rating}</p>
           </div>
         </div>
       </div>
@@ -29,24 +43,18 @@ const JobCard = () => {
 
           <div className="tag-item">
             <BsBriefcaseFill className="tag-icon" />
-            <p className="tag-text">Internship</p>
+            <p className="tag-text">{employmentType}</p>
           </div>
         </div>
 
-        <p className="job-listing-salary">10 LPA</p>
+        <p className="job-listing-salary">{packagePerAnnum}</p>
       </div>
 
       <hr className="job-listing-divider" />
 
       <div className="job-description-section">
         <h3 className="job-description-title">Description</h3>
-        <p className="job-description-text">
-          We are looking for a DevOps Engineer with a minimum of 5 years of
-          industry experience, peferably working in the financial IT community.
-          The position in the team is focused on delivering exceptional services
-          to both BU and Dev partners to minimize/avoid any production outages.
-          The role will focus on production support.
-        </p>
+        <p className="job-description-text">{jobDescription}</p>
       </div>
     </div>
   );
