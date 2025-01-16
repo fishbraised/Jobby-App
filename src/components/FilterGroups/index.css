@@ -9,6 +9,7 @@
 
 .filter-category-title {
   margin-bottom: 1.25em;
+  color: #f8fbfd;
   font-size: 1.6rem;
   font-weight: 500;
 }
@@ -26,6 +27,7 @@
 
 .filter-options li label {
   margin: 0;
+  color: #f8fbfd;
   font-size: 1.4rem;
 }
 

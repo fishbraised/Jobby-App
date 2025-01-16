@@ -1,135 +1,12 @@
 .home-page {
   min-height: 100vh;
-  background-image: url('https://res.cloudinary.com/saiuttej/image/upload/v1733312681/Jobby%20App/home-sm-bg_ixndwi.png');
+  background-image: url("https://res.cloudinary.com/saiuttej/image/upload/v1733312681/Jobby%20App/home-sm-bg_ixndwi.png");
   background-size: cover;
 }
 
 @media screen and (min-width: 576px) {
   .home-page {
-    background-image: url('https://res.cloudinary.com/saiuttej/image/upload/v1733312609/Jobby%20App/home-lg-bg_q1aabj.png');
-  }
-}
-
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.85em 1.75em;
-  background: #272727;
-}
-
-.navbar-logo {
-  width: 50px;
-}
-
-@media screen and (min-width: 768px) {
-  .navbar-logo {
-    width: 55px;
-  }
-}
-
-@media screen and (min-width: 992px) {
-  .navbar-logo {
-    width: 60px;
-  }
-}
-
-.navbar-links-mobile {
-}
-
-@media screen and (min-width: 576px) {
-  .navbar-links-mobile {
-    display: none;
-  }
-}
-
-.navbar-icon {
-  margin-left: 1em;
-  font-size: 2.4rem;
-  cursor: pointer;
-}
-
-@media screen and (min-width: 768px) {
-  .navbar-icon {
-    font-size: 2.5rem;
-  }
-}
-
-@media screen and (min-width: 992px) {
-  .navbar-icon {
-    font-size: 2.6rem;
-  }
-}
-
-.navbar-links-desktop {
-  display: none;
-  padding: 0;
-  gap: 0.75em;
-  list-style-type: none;
-}
-
-@media screen and (min-width: 576px) {
-  .navbar-links-desktop {
-    display: flex;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .navbar-links-desktop {
-    gap: 1.75em;
-  }
-}
-
-@media screen and (min-width: 992px) {
-  .navbar-links-desktop {
-    gap: 2.75em;
-  }
-}
-
-.navbar-link-item {
-  display: flex;
-  font-size: 1.6rem;
-  cursor: pointer;
-}
-
-@media screen and (min-width: 768px) {
-  .navbar-link-item {
-    font-size: 1.8rem;
-  }
-}
-
-@media screen and (min-width: 992px) {
-  .navbar-link-item {
-    font-size: 2rem;
-  }
-}
-
-.logout-btn {
-  display: none;
-  border: none;
-  border-radius: 0.5em;
-  padding: 0.6em 1.25em;
-  background: #6163ee;
-  font-size: 1.2rem;
-  font-weight: 500;
-  cursor: pointer;
-}
-
-@media screen and (min-width: 576px) {
-  .logout-btn {
-    display: inline;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .logout-btn {
-    font-size: 1.3rem;
-  }
-}
-
-@media screen and (min-width: 992px) {
-  .logout-btn {
-    font-size: 1.4rem;
+    background-image: url("https://res.cloudinary.com/saiuttej/image/upload/v1733312609/Jobby%20App/home-lg-bg_q1aabj.png");
   }
 }
 
@@ -171,6 +48,7 @@
 
 .hero-title {
   margin-bottom: 0.75em;
+  color: #f8fbfd;
   font-size: 3.2rem;
   line-height: calc(3.2rem * 1.5);
   letter-spacing: 0.02em;
@@ -197,6 +75,7 @@
 }
 
 .hero-description {
+  color: #f8fbfd;
   font-size: 1.7rem;
   line-height: calc(1.6rem * 1.8);
 }
@@ -227,6 +106,7 @@
   border-radius: 0.5em;
   padding: 0.7em 1.25em;
   margin-top: 0.6em;
+  color: #f8fbfd;
   background: #6163ee;
   font-size: 1.4rem;
   font-weight: 500;

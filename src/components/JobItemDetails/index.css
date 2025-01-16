@@ -1,14 +1,18 @@
-.link-tag {
-  text-decoration-line: none;
+.job-details-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #000000;
 }
 
-@media screen and (min-width: 1200px) {
-  .link-tag {
-    max-width: 47%;
-  }
+.job-details-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2.5em 2em;
 }
 
-.job-listing-card {
+.job-details-card {
   border-radius: 1.5em;
   padding: 2.25em 1.25em;
   margin-top: 3.25em;
@@ -16,42 +20,48 @@
 }
 
 @media screen and (min-width: 768px) {
-  .job-listing-card {
+  .job-details-card {
     padding: 2.75em 2.25em;
   }
 }
 
-.job-listing-header {
+@media screen and (min-width: 1200px) {
+  .job-details-card {
+    width: 95%;
+  }
+}
+
+.job-details-header {
   display: flex;
   align-self: center;
 }
 
-.job-listing-image {
+.job-details-image {
   width: 40px;
   height: 40px;
   border-radius: 1em;
 }
 
 @media screen and (min-width: 768px) {
-  .job-listing-image {
+  .job-details-image {
     width: 52.5px;
     height: 52.5px;
   }
 }
 
-.job-listing-title-section {
+.job-details-title-section {
   display: flex;
   flex-direction: column;
   margin-left: 0.75em;
 }
 
 @media screen and (min-width: 768px) {
-  .job-listing-title-section {
+  .job-details-title-section {
     margin-left: 1.5em;
   }
 }
 
-.job-listing-title {
+.job-details-title {
   margin: 0;
   margin-bottom: 0.25em;
   color: #f8fbfd;
@@ -60,30 +70,30 @@
 }
 
 @media screen and (min-width: 768px) {
-  .job-listing-title {
+  .job-details-title {
     font-size: 1.8rem;
     font-weight: 500;
   }
 }
 
-.job-listing-rating {
+.job-details-rating {
   display: flex;
   align-items: center;
 }
 
-.rating-icon {
+.job-details-rating-icon {
   margin-left: -0.13em;
   fill: #fdbb4d;
   font-size: 1.8rem;
 }
 
 @media screen and (min-width: 768px) {
-  .rating-icon {
+  .job-details-rating-icon {
     font-size: 2.2rem;
   }
 }
 
-.rating-score {
+.job-details-rating-score {
   margin: 0;
   margin-top: 0.13em;
   margin-left: 0.25em;
@@ -93,92 +103,123 @@
 }
 
 @media screen and (min-width: 768px) {
-  .rating-score {
+  .job-details-rating-score {
     font-size: 1.8rem;
   }
 }
 
-.job-listing-tags {
+.job-details-tags {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.tag-info-wrapper {
+.job-details-tag-info-wrapper {
   display: flex;
   align-items: center;
 }
 
-.tag-item {
+.job-details-tag-item {
   display: flex;
   align-items: center;
 }
 
-.tag-icon {
+.job-details-tag-icon {
   margin-right: 0.3em;
   color: #f8fbfd;
   font-size: 1.2rem;
 }
 
 @media screen and (min-width: 768px) {
-  .tag-icon {
+  .job-details-tag-icon {
     font-size: 2rem;
   }
 }
 
-.tag-text {
+.job-details-tag-text {
   margin-right: 1.25em;
   color: #f8fbfd;
   font-size: 1.2rem;
 }
 
 @media screen and (min-width: 768px) {
-  .tag-text {
+  .job-details-tag-text {
     margin-right: 1.75em;
   }
 }
 
-.job-listing-salary {
+.job-details-salary {
   color: #f8fbfd;
   font-size: 1.4rem;
   font-weight: 500;
 }
 
 @media screen and (min-width: 768px) {
-  .job-listing-salary {
+  .job-details-salary {
     font-size: 1.8rem;
   }
 }
 
-.job-listing-divider {
+.job-details-divider {
   border: 1px solid #64748a;
   margin-bottom: 1.5em;
 }
 
 @media screen and (min-width: 768px) {
-  .job-listing-divider {
+  .job-details-divider {
     margin-top: 0;
     margin-bottom: 1.75em;
   }
 }
 
-.job-description-section {
+.job-details-description-section {
 }
 
-.job-description-title {
+.job-details-description-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.job-details-description-title {
+  margin: 0;
+}
+
+.job-details-sub-title {
   color: #f8fbfd;
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   font-weight: 500;
 }
 
 @media screen and (min-width: 768px) {
-  .job-description-title {
-    font-size: 1.6rem;
+  .job-details-sub-title {
     margin-bottom: 0;
   }
 }
 
-.job-description-text {
+.job-details-skills-title {
+  color: #f8fbfd;
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.job-details-description-link {
+  font-size: 1.8rem;
+  text-decoration-line: none;
+}
+
+.job-details-description-link span {
+  margin-right: 0.45em;
+
+  color: #6363f1;
+}
+
+.job-details-description-link-icon {
+  color: #6363f1;
+  font-size: 1.4rem;
+}
+
+.job-details-description-text {
   margin-bottom: 0;
   color: #f8fbfd;
   font-size: 1.2rem;
@@ -187,7 +228,7 @@
 }
 
 @media screen and (min-width: 768px) {
-  .job-description-text {
+  .job-details-description-text {
     margin-top: 0.75em;
     font-size: 1.4rem;
     line-height: calc(1.4rem * 1.8);

@@ -42,7 +42,6 @@ const Navbar = (props) => {
           </button>
         </li>
       </ul>
-      {/* Convert these things above to ul and li, with button */}
 
       <ul className="navbar-links-desktop">
         <Link to="/" className="navbar-link">

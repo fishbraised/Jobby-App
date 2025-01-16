@@ -2,8 +2,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
-  color: #f8fbfd;
+  font-family: "Roboto", sans-serif;
 }
 
 html {

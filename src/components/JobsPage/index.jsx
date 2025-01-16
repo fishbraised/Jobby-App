@@ -130,7 +130,7 @@ class JobsPage extends Component {
     this.setState({ jobsData: updatedData, apiStatus: apiConstants.success });
   };
 
-  getJobsFailure = (errorMsg) => {
+  getJobsFailure = () => {
     this.setState({ apiStatus: apiConstants.failure });
   };
 
@@ -181,7 +181,7 @@ class JobsPage extends Component {
       <div className="jobs-page">
         <Navbar />
 
-        <main className="jobs-main-content">
+        <main className="jobs-content">
           <form
             className="jobs-search-box-sm jobs-search-box"
             onSubmit={this.getJobsData}
