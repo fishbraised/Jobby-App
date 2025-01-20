@@ -9,25 +9,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2.5em 2em;
+  padding: 2.5em 10em;
 }
 
 .job-details-card {
   border-radius: 1.5em;
   padding: 2.25em 1.25em;
-  margin-top: 3.25em;
+  margin-top: 2em;
   background: #272727;
 }
 
 @media screen and (min-width: 768px) {
   .job-details-card {
     padding: 2.75em 2.25em;
-  }
-}
-
-@media screen and (min-width: 1200px) {
-  .job-details-card {
-    width: 95%;
   }
 }
 
@@ -183,29 +177,39 @@
 
 .job-details-description-title {
   margin: 0;
+  color: #f8fbfd;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+@media screen and (min-width: 768px) {
+  .job-details-description-title {
+    font-size: 2.2rem;
+  }
 }
 
 .job-details-sub-title {
   color: #f8fbfd;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 500;
 }
 
 @media screen and (min-width: 768px) {
   .job-details-sub-title {
     margin-bottom: 0;
+    font-size: 1.8rem;
   }
 }
 
-.job-details-skills-title {
-  color: #f8fbfd;
-  font-size: 1.8rem;
-  font-weight: 500;
+.job-details-description-link {
+  font-size: 2rem;
+  text-decoration-line: none;
 }
 
-.job-details-description-link {
-  font-size: 1.8rem;
-  text-decoration-line: none;
+@media screen and (min-width: 768px) {
+  .job-details-description-link {
+    font-size: 2.2rem;
+  }
 }
 
 .job-details-description-link span {
@@ -216,10 +220,16 @@
 
 .job-details-description-link-icon {
   color: #6363f1;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
 }
 
-.job-details-description-text {
+@media screen and (min-width: 768px) {
+  .job-details-description-link-icon {
+    font-size: 1.6rem;
+  }
+}
+
+/* .job-details-description-text {
   margin-bottom: 0;
   color: #f8fbfd;
   font-size: 1.2rem;
@@ -232,5 +242,164 @@
     margin-top: 0.75em;
     font-size: 1.4rem;
     line-height: calc(1.4rem * 1.8);
+  }
+} */
+
+.job-details-company-life-box {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 992px) {
+  .job-details-company-life-box {
+    flex-direction: row;
+  }
+}
+
+.job-details-company-life-title {
+  margin-top: 1.5em;
+  color: #f8fbfd;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.job-details-company-life-text {
+}
+
+.job-details-desc {
+  margin-bottom: 0;
+  color: #f8fbfd;
+  font-size: 1.2rem;
+  line-height: calc(1.2rem * 1.6);
+  letter-spacing: 0.02em;
+}
+
+@media screen and (min-width: 768px) {
+  .job-details-desc {
+    margin-top: 0.75em;
+    font-size: 1.4rem;
+    line-height: calc(1.4rem * 1.8);
+  }
+}
+
+.job-details-company-life-image {
+  width: 100%;
+}
+
+.similar-jobs-content {
+}
+
+.similar-jobs-title {
+  margin-top: 1.5em;
+  margin-bottom: -0.75em;
+  color: #f8fbfd;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+@media screen and (min-width: 768px) {
+  .similar-jobs-title {
+    font-size: 2.2rem;
+  }
+}
+
+.similar-jobs-list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 0;
+  gap: 0.125em 3em;
+}
+
+.job-details-skills-section {
+}
+
+.job-details-skills-title {
+  margin-bottom: 1em;
+  color: #f8fbfd;
+  font-weight: 500;
+}
+
+.job-details-skills-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 0;
+  gap: 50px;
+}
+
+.job-details-failure-result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1em;
+}
+
+.job-details-failure-image {
+  width: 300px;
+  aspect-ratio: 1;
+  background-size: cover;
+}
+
+@media screen and (min-width: 768px) {
+  .job-details-failure-image {
+    width: 400px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .job-details-failure-image {
+    width: 450px;
+  }
+}
+
+.job-details-failure-title {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+@media screen and (min-width: 768px) {
+  .job-details-failure-title {
+    font-size: 3.4rem;
+  }
+}
+
+.job-details-failure-description {
+  width: 250px;
+  margin-top: 0.65em;
+  margin-bottom: 0.5em;
+  color: #a1cfc9;
+  font-size: 1.6rem;
+  line-height: calc(1.6rem * 1.6);
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .job-details-failure-description {
+    width: auto;
+    margin-top: 1.25em;
+    font-size: 1.1rem;
+    line-height: normal;
+  }
+}
+
+.job-details-failure-retry-btn {
+  border: none;
+  border-radius: 0.5em;
+  padding: 0.65em 2em;
+  margin-top: 0.6em;
+  background: #4448db;
+  font-size: 1.4rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .job-details-failure-retry-btn {
+    padding: 0.65em 2em;
+    margin-top: 0.6em;
+    font-size: 1.6rem;
   }
 }

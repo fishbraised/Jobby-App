@@ -2,11 +2,13 @@ import Cookies from "js-cookie";
 
 import Navbar from "../Navbar";
 import SkillItem from "../SkillItem";
+import SimilarJobItem from "../SimilarJobItem";
 
 import { MdOutlineStarPurple500 } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";
 import { BsBriefcaseFill } from "react-icons/bs";
 import { FaExternalLinkAlt } from "react-icons/fa";
+import { Triangle } from "react-loader-spinner";
 
 import { Component } from "react";
 
@@ -20,19 +22,26 @@ const apiConstants = {
 };
 
 class JobItemDetails extends Component {
-  state = { jobItemData: {}, apiStatus: apiConstants.initial };
+  state = {
+    jobDetailsData: {},
+    similarJobsData: {},
+    apiStatus: apiConstants.initial,
+  };
 
   getJobDetailsSuccess = (data) => {
+    console.log(data);
+
     const updatedJobDetails = {
       companyLogoUrl: data.job_details.company_logo_url,
       companyWebsiteUrl: data.job_details.company_website_url,
       employmentType: data.job_details.employment_type,
-      id: data.id,
+      id: data.job_details.id,
       jobDescription: data.job_details.job_description,
       skills: data.job_details.skills.map((eachObj) => ({
         imageUrl: eachObj.image_url,
         name: eachObj.name,
       })),
+      title: data.job_details.title,
       lifeAtCompany: {
         description: data.job_details.life_at_company.description,
         imageUrl: data.job_details.life_at_company.image_url,
@@ -52,15 +61,15 @@ class JobItemDetails extends Component {
       title: eachObj.title,
     }));
 
-    const updatedData = {
-      jobDetails: updatedJobDetails,
-      similarJobs: updatedSimilarJobs,
-    };
+    this.setState({
+      jobDetailsData: updatedJobDetails,
+      similarJobsData: updatedSimilarJobs,
+      apiStatus: apiConstants.success,
+    });
+  };
 
-    this.setState({ jobItemData: updatedData });
-
-    console.log("raw api data: ", data);
-    console.log("updated api data: ", updatedData);
+  getJobDetailsFailure = () => {
+    this.setState({ apiStatus: apiConstants.failure });
   };
 
   getJobItemData = async () => {
@@ -88,90 +97,171 @@ class JobItemDetails extends Component {
     }
   };
 
+  renderSuccessView = () => {
+    const { jobDetailsData, similarJobsData } = this.state;
+
+    return (
+      <main className="job-details-content">
+        <div className="job-details-card">
+          <div className="job-details-header">
+            <img
+              className="job-details-image"
+              src={jobDetailsData.companyLogoUrl}
+              alt="job-details-image"
+            />
+
+            <div className="job-details-title-section">
+              <h2 className="job-details-title">{jobDetailsData.title}</h2>
+
+              <div className="job-details-rating">
+                <MdOutlineStarPurple500
+                  className="job-details-rating-icon"
+                  color="fdbb4d"
+                />
+                <p className="job-details-rating-score">
+                  {jobDetailsData.rating}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="job-details-tags">
+            <div className="job-details-tag-info-wrapper">
+              <div className="job-details-tag-item">
+                <FaLocationDot className="job-details-tag-icon" />
+                <p className="job-details-tag-text">
+                  {jobDetailsData.location}
+                </p>
+              </div>
+
+              <div className="job-details-tag-item">
+                <BsBriefcaseFill className="job-details-tag-icon" />
+                <p className="job-details-tag-text">
+                  {jobDetailsData.employmentType}
+                </p>
+              </div>
+            </div>
+
+            <p className="job-details-salary">
+              {jobDetailsData.packagePerAnnum}
+            </p>
+          </div>
+
+          <hr className="job-details-divider" />
+
+          <div className="job-details-description-section">
+            <div className="job-details-description-row">
+              <h3 className="job-details-description-title">Description</h3>
+              <a
+                className="job-details-description-link"
+                href={jobDetailsData.companyWebsiteUrl}
+              >
+                <span>Visit</span>
+                <FaExternalLinkAlt className="job-details-description-link-icon" />
+              </a>
+            </div>
+            <p className="job-details-description-text job-details-desc">
+              {jobDetailsData.jobDescription}
+            </p>
+          </div>
+
+          <div className="job-details-skills-section">
+            <h3 className="job-details-skills-title job-details-sub-title">
+              Skills
+            </h3>
+
+            <ul className="job-details-skills-list">
+              {jobDetailsData.skills.map((eachObj) => (
+                <SkillItem key={eachObj.name} skillsInfo={eachObj} />
+              ))}
+            </ul>
+          </div>
+
+          <div className="job-details-company-life-section">
+            <h3 className="job-details-company-life-title job-details-sub-title">
+              Life at Company
+            </h3>
+
+            <div className="job-details-company-life-box">
+              <p className="job-details-company-life-text job-details-desc">
+                {jobDetailsData.lifeAtCompany.description}
+              </p>
+              <img
+                src={jobDetailsData.lifeAtCompany.imageUrl}
+                alt="job-details-company-life-image"
+                className="job-details-company-life-image"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="similar-jobs-content">
+          <h2 className="similar-jobs-title">Similar Jobs</h2>
+
+          <ul className="similar-jobs-list">
+            {similarJobsData.map((eachObj) => (
+              <SimilarJobItem key={eachObj.id} similarJobInfo={eachObj} />
+            ))}
+          </ul>
+        </div>
+      </main>
+    );
+  };
+
+  renderFailureView = () => (
+    <div className="job-details-failure-result">
+      <img
+        className="job-details-failure-image"
+        src="https://res.cloudinary.com/dkoqbt4pc/image/upload/v1733842125/Jobby%20App/computer-error.png"
+        alt="job-details-failure-image"
+      />
+      <h2 className="job-details-failure-title">Oops! Something Went Wrong</h2>
+      <p className="job-details-failure-description">
+        We cannot seem to find the page you are looking for.
+      </p>
+      <button className="job-details-failure-retry-btn">Retry</button>
+    </div>
+  );
+
+  renderLoader = () => (
+    <div className="jobs-loader-con">
+      <Triangle
+        visible={true}
+        height="80"
+        width="80"
+        color="#4448db"
+        ariaLabel="triangle-loading"
+        wrapperStyle={{}}
+        wrapperClass=""
+      />
+    </div>
+  );
+
+  renderSwitch = () => {
+    const { apiStatus } = this.state;
+
+    switch (apiStatus) {
+      case apiConstants.success:
+        return this.renderSuccessView();
+      case apiConstants.failure:
+        return this.renderFailureView();
+      case apiConstants.inProgress:
+        return this.renderLoader();
+      default:
+        return null;
+    }
+  };
+
   componentDidMount = () => {
     this.getJobItemData();
   };
 
   render() {
-    const { jobItemData } = this.state;
-
     return (
       <div className="job-details-page">
         <Navbar />
 
-        <main className="job-details-content">
-          <div className="job-details-card">
-            <div className="job-details-header">
-              <img
-                className="job-details-image"
-                src="https://assets.ccbp.in/frontend/react-js/jobby-app/netflix-img.png"
-                alt="job-details-image"
-              />
-
-              <div className="job-details-title-section">
-                <h2 className="job-details-title">Devops Engineer</h2>
-
-                <div className="job-details-rating">
-                  <MdOutlineStarPurple500
-                    className="job-details-rating-icon"
-                    color="fdbb4d"
-                  />
-                  <p className="job-details-rating-score">4</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="job-details-tags">
-              <div className="job-details-tag-info-wrapper">
-                <div className="job-details-tag-item">
-                  <FaLocationDot className="job-details-tag-icon" />
-                  <p className="job-details-tag-text">Delhi</p>
-                </div>
-
-                <div className="job-details-tag-item">
-                  <BsBriefcaseFill className="job-details-tag-icon" />
-                  <p className="job-details-tag-text">Internship</p>
-                </div>
-              </div>
-
-              <p className="job-details-salary">10 LPA</p>
-            </div>
-
-            <hr className="job-details-divider" />
-
-            <div className="job-details-description-section">
-              <div className="job-details-description-row">
-                <h3 className="job-details-description-title job-details-sub-title">
-                  Description
-                </h3>
-                <a className="job-details-description-link" href="#">
-                  <span>Visit</span>
-                  <FaExternalLinkAlt className="job-details-description-link-icon" />
-                </a>
-              </div>
-              <p className="job-details-description-text">
-                We are looking for a DevOps Engineer with a minimum of 5 years
-                of industry experience, preferably working in the financial IT
-                community. The position in the team is focused on delivering
-                exceptional services to both BU and Dev partners to
-                minimize/avoid any production outages. The role will focus on
-                production support.
-              </p>
-            </div>
-
-            <div className="job-details-skills-section">
-              <h3 className="job-details-skills-title job-details-sub-title">
-                Skills
-              </h3>
-
-              <ul className="job-details-skills-list">
-                {jobItemData.jobDetails.skills.map((eachObj) => (
-                  <SkillItem key={eachObj.name} skillsInfo={eachObj} />
-                ))}
-              </ul>
-            </div>
-          </div>
-        </main>
+        {this.renderSwitch()}
       </div>
     );
   }

@@ -19,18 +19,19 @@ class ProfileDetails extends Component {
 
   renderSuccessView = () => {
     const { profileData } = this.state;
+    const { profileImageUrl, name, shortBio } = profileData;
 
     return (
       <div className="profile-details-card">
         <figure className="profile-identity">
           <img
             className="profile-image"
-            src={profileData.profileImageUrl}
+            src={profileImageUrl}
             alt="profile-image"
           />
           <figcaption className="profile-caption">
-            <h2 className="profile-name">{profileData.name}</h2>
-            <p className="profile-job-title">{profileData.shortBio}</p>
+            <h2 className="profile-name">{name}</h2>
+            <p className="profile-job-title">{shortBio}</p>
           </figcaption>
         </figure>
       </div>
@@ -80,10 +81,8 @@ class ProfileDetails extends Component {
     switch (apiStatus) {
       case apiConstants.success:
         return this.renderSuccessView();
-
       case apiConstants.failure:
         return this.renderFailureView();
-
       case apiConstants.inProgress:
         return this.renderLoader();
     }
